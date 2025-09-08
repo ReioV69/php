@@ -13,88 +13,59 @@
 </body>
 <h2>Pildid</h2>
 
-<?php
+   <?php
 $pildid = [
-    "prentice.jpg",
-    "freeland.jpg",
-    "peterus.jpg",
-    "devlin.jpg",
-    "gabriel.jpg",
-    "pete.jpg"
+    'prentice.jpg',
+    'freeland.jpg',
+    'peterus.jpg',
+    'devlin.jpg',
+    'gabriel.jpg',
+    'pete.jpg'
 ];
 ?>
-<img src="tekita/img/<?php echo $pildid[2]; ?>" alt="Kolmas pilt">
 
+<div class="row">
+    <?php foreach ($pildid as $pilt): ?>
+       <div class="col-md-2">
+            <img src="pildid/<?php echo $pilt; ?>" alt="<?php echo $pilt; ?>" class="img-fluid">
+        </div>
+    <?php endforeach; ?>
+</div>
 
-<?php foreach ($pildid as $pilt): ?>
-<img src="tekita/img/<?php echo $pilt; ?>" alt="<?php echo $pilt; ?>" class="img-fluid">
+    <h2>Google</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="eemalda">Sisesta otsing:</label>
+            <input type="text" class="form-control" id="eemalda" name="eemalda" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Otsi</button>
+    </form>
 
+    <?php
+    $Google = array("Feake","Bradwell","Dreger","Bloggett","Lambole","Daish","Lippiett",
+    "Blackie","Stollenbeck","Houseago","Dugall","Sprowson","Kitley","Mcenamin",
+    "Allchin","Doghartie","Brierly","Pirrone","Fairnie","Seal","Scoffins",
+    "Galer","Matevosian","DeBlase","Cubbin","Izzett","Ebi","Clohisey",
+    "Prater","Probart","Samwaye","Concannon","MacLure","Eliet","Kundt","Reyes");
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $otsitavGoogle = $_POST['eemalda'];
 
+        if(in_array($otsitavGoogle, $Google)) {
+            $message = "$otsitavGoogle on massiivis";
+            $alertClass = "alert-success";
+        } else {
+            $message = "$otsitavGoogle ei ole massiivis";
+            $alertClass = "alert-danger";
+        }
+        echo "<div class='alert $alertClass mt-3' role='alert'>$message</div>";
+    }
+    ?>
 
-
-
-
-
-
-
-
-
-
-<h2>Google</h2>
-  <form method="POST" action="">
-            <div class="form-group">
-                <label for="eemalda">Sisesta otsing:</label>
-                <input type="text" class="form-control" id="eemalda" name="eemalda" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Otsi</button>
-        </form>
-<?php
-
-$Google = array("Feake","Bradwell","Dreger","Bloggett","Lambole","Daish","Lippiett","
-Blackie","Stollenbeck","Houseago","Dugall","Sprowson","Kitley","Mcenamin",
-"Allchin","Doghartie","Brierly","Pirrone","Fairnie","Seal","Scoffins",
-"Galer","Matevosian","DeBlase","Cubbin","Izzett","Ebi","Clohisey",
-"Prater","Probart","Samwaye","Concannon","MacLure","Eliet","Kundt","Reyes");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $otsitavGoogle = $_POST['eemalda'];
-
-if(in_array($otsitavGoogle, $Google)) {
-    $message = "$otsitavGoogle on massiivis";
-    $alertClass = "alert-success";
-} else {
-    $message = "$otsitavGoogle ei ole massiivis";
-    $alertClass = "alert-danger";
-}
-echo "<div class='alert $alertClass mt-3' role='alert'>$message</div>";
-
-
-
-
-}
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1>Harjutus 5</h1>
-<h2>Hiina</h2>
-<?php
-$nimed = array("瀚聪", "月松", "雨萌", "展博", "雪丽", "哲恒", "慧妍", "博裕", "宸瑜", "奕漳",
-    "思宏", "伟菘", "彦歆", "睿杰", "尹智", "琪煜", "惠茜", "晓晴", "志宸", "博豪",
-    "璟雯", "崇杉", "俊誉", "军卿", "辰华", "娅楠", "志宸", "欣妍", "明美");
+    <h2>Hiina</h2>
+    <?php
+    $nimed = array("瀚聪", "月松", "雨萌", "展博", "雪丽", "哲恒", "慧妍", "博裕", "宸瑜", "奕漳",
+        "思宏", "伟");
 
 sort($nimed);
 
@@ -249,9 +220,9 @@ if (count($cars)==count($vins)){
             }
 
         }
+?>
 
-
-
+<?php
 
 
 
@@ -270,4 +241,5 @@ if (count($cars)==count($vins)){
     echo "Suvaline nimi:".$nimed[array_rand($nimed)]."<br>";
 
 ?>
+
 </html>
