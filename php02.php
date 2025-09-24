@@ -7,91 +7,67 @@
 </head>
 <body>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 <h2>Pildid</h2>
 
-   <?php
-$pildid = [
-    'prentice.jpg',
-    'freeland.jpg',
-    'peterus.jpg',
-    'devlin.jpg',
-    'gabriel.jpg',
-    'pete.jpg'
-];
-?>
-
-<div class="row">
-    <?php foreach ($pildid as $pilt): ?>
-       <div class="col-md-2">
-            <img src="pildid/<?php echo $pilt; ?>" alt="<?php echo $pilt; ?>" class="img-fluid">
+  <?php
+    $pildid = array("prentice.jpg","freeland.jpg","peterus.jpg","devlin.jpg","gabriel.jpg","pete.jpg");
+  ?>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/img/<?php echo $pildid[2];  ?>" alt="">
+          </div>
         </div>
-    <?php endforeach; ?>
-</div>
 
+        <div class="row">
+            <?php
+                foreach ($pildid as $pilt) {
+                    echo '<div class="col-sm-2">';
+                    echo '<img class="img-fluid" src="/img/'.$pilt.'" alt="">';
+                    echo '</div>';
+                }
+            ?>
+        </div>
+    </div>
     <h2>Google</h2>
-    <form method="POST" action="">
-        <div class="form-group">
-            <label for="eemalda">Sisesta otsing:</label>
-            <input type="text" class="form-control" id="eemalda" name="eemalda" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Otsi</button>
+        <form action="#" method="get">
+     <input type="#" name="otsi" ><br>
+    <input type="submit" value="otsing">
     </form>
-
     <?php
-    $Google = array("Feake","Bradwell","Dreger","Bloggett","Lambole","Daish","Lippiett",
-    "Blackie","Stollenbeck","Houseago","Dugall","Sprowson","Kitley","Mcenamin",
-    "Allchin","Doghartie","Brierly","Pirrone","Fairnie","Seal","Scoffins",
-    "Galer","Matevosian","DeBlase","Cubbin","Izzett","Ebi","Clohisey",
-    "Prater","Probart","Samwaye","Concannon","MacLure","Eliet","Kundt","Reyes");
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $otsitavGoogle = $_POST['eemalda'];
-
-        if(in_array($otsitavGoogle, $Google)) {
-            $message = "$otsitavGoogle on massiivis";
-            $alertClass = "alert-success";
-        } else {
-            $message = "$otsitavGoogle ei ole massiivis";
-            $alertClass = "alert-danger";
-        }
-        echo "<div class='alert $alertClass mt-3' role='alert'>$message</div>";
+    $google = array("Feake","Bradwell","Dreger","Bloggett","Lambole","Daish","Lippiett","
+Blackie","Stollenbeck","Houseago","Dugall","Sprowson","Kitley","Mcenamin",
+"Allchin","Doghartie","Brierly","Pirrone","Fairnie","Seal","Scoffins",
+"Galer","Matevosian","DeBlase","Cubbin","Izzett","Ebi","Clohisey",
+"Prater","Probart","Samwaye","Concannon","MacLure","Eliet","Kundt","Reyes");
+if(isset($_GET["otsi"])) {
+    $otsi_n = $_GET["otsi"];
+    $otsitav = array_search($otsi_n, $google);
+    if ($otsitav !== false) {
+        echo "Otsing leitud!<br>";
+    } else {
+        echo "Otsingut ei leitud<br>";
     }
-    ?>
+}
+?>
 
     <h2>Hiina</h2>
     <?php
-    $nimed = array("瀚聪", "月松", "雨萌", "展博", "雪丽", "哲恒", "慧妍", "博裕", "宸瑜", "奕漳",
+    $hiina = array("瀚聪", "月松", "雨萌", "展博", "雪丽", "哲恒", "慧妍", "博裕", "宸瑜", "奕漳",
         "思宏", "伟");
 
-sort($nimed);
+sort($hiina);
 
-$esimenenimi = $nimed[0];
-$viimanenimi = end($nimed);
-
-echo "Esimene nimi on $esimenenimi <br>";
-echo "Viimane nimi on $viimanenimi<br>";
+$esimenenimi = $hiina[0];
+$viimanenimi = end($hiina);
+foreach($hiina as $hiinanimed) {
+    echo $hiinanimed."<br>";
+}
+echo "Esimene nimi on".$esimenenimi. "<br>";
+echo "Viimane nimi on" .$viimanenimi."<br>";
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1>Harjutus 5</h1>
 <h2>Riigid</h2>
 <?php
     $riigid = array("Indonesia", "Canada", "Kyrgyzstan", "Germany", "Philippines",
@@ -119,13 +95,13 @@ echo "Viimane nimi on $viimanenimi<br>";
 
 
 
-<h1>harjutus 5</h1>
+<h2>firmad</h2>
     <form action="#">
         <input type="text" name="eemalda">
         <input type="submit" value="eemalda fima">
     </form>
     <?php
-    $firmad=array("Kimia","Mynte","Voomm","Twiyo","Layo","Talane","Gigashots","Tagchat","Quaxo","Voonyx","Kwilith","Edgepulse","Eidel","Eadel","Jaloo","Oyope","Jamia");
+    $firmad = array("Kimia","Mynte","Voomm","Twiyo","Layo","Talane","Gigashots","Tagchat","Quaxo","Voonyx","Kwilith","Edgepulse","Eidel","Eadel","Jaloo","Oyope","Jamia");
     if(isset($_GET["eemalda"])){
         $kustuta_firma=$_GET["eemalda"];
         $otsitav=array_search($kustuta_firma, $firmad);
@@ -137,22 +113,12 @@ echo "Viimane nimi on $viimanenimi<br>";
 
     ?>
 
-
-
-
-
-
-
-
-
-
-<H1>Harjutus 5</H1>
 <h2>Palgad</h2>
 <?php
 
 
 $palgad = array(1220,1213,1295,1312,1298,1354,1296,1286,1292,1327,1369,1455);
-echo array_sum($palgad)/count($palgad);
+echo "2018 aastal keskmine palk on: " . array_sum($palgad)/count($palgad)."<br>";
 
 
 
@@ -200,12 +166,12 @@ if (count($cars)==count($vins)){
   $toyo=0;
         $audi=0;
 
-        foreach ($autod as $auto) {
-            if($auto=="toyota"){
+        foreach ($cars as $car) {
+            if($car=="Toyota"){
                 $toyo++;
 
             }
-            if($auto=="audi"){
+            if($car=="Audi"){
                 $audi++;
                 
             }
@@ -213,27 +179,26 @@ if (count($cars)==count($vins)){
         echo "toyota: ".$toyo."<br>";
         echo "audi: ".$audi."<br>";
 
-        echo"valed VINid:<br>";
+    
         foreach ($vins as $vin) {
             if (strlen($vin)<17) {
-            echo $vin."<br>";
+            echo "Alla 17 tahte: ".$vin."<br>";
             }
 
         }
 ?>
-
+<h2>nimed</h2>
 <?php
 
 
-
-    $nimed = array('mari', 'kati', 'malle', 'minni', 'liisa', 'karin', 'juhan');
+    $nimed = array('Mari', 'Kati', 'Malle', 'Minni', 'Liisa', 'Karin', 'Liis','Katrin');
     sort($nimed);
 
     $loendur = 1;
-    foreach($nimed as $nimi){
-        echo "$nimi <br>";
+    foreach ($nimed as $nimi) {
+        echo $nimi."<br>";
         $loendur++;
-        if ($loendur>=3) {
+        if ($loendur > 3) {
             break;
         }
     }

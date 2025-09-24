@@ -6,12 +6,9 @@
     <title>Harjutus 7</title>
 </head>
 <body>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
 <?php
-
 function vahemikus($a1, $a2, $s) {
     for($i=$a1; $i <= $a2; $i=$i+$s) {
         echo $i;
@@ -48,15 +45,11 @@ echo '<div class="row">
 
 ?>
 
-    <H1>harjutus 7</H1>
     <h2>Tervitus</h2>
 <?php
 function tervitus() {
     echo "Tere päiksekene"."<br>";
 }
-tervitus();
-tervitus();
-tervitus();
 tervitus();
 tervitus();
 uudiskiri();
@@ -70,42 +63,69 @@ echo "<br>";
     külg 1<input type="number" name="Kylg1" value="10">
     külg 2<input type="number" name="Kylg2" value="10">
     <input type="submit" name="Arvuta pindala">
-</form>
 
 <?php
-// echo "Pindala ".rectangleS($_GET['Kylg1'],$_GET['Kylg2']);
-echo "Pindala ".(isset($_GET['Kylg1'])) ? rectangleS($_GET['Kylg1'],$_GET['Kylg2']) : "Sisesta Küljed";
+echo "Pindala ".rectangleS($_GET['Kylg1'],$_GET['Kylg2']);
+// echo "Pindala ".(isset($_GET['Kylg1']) ? rectangleS($_GET['Kylg1'],$_GET['Kylg2']) : "Sisesta Küljed");
 echo "<br>";
-
-function ik($ik) {
-    $pikkus = strlen($ik); 
+?>
+<h2>Isikukood</h2>
+<?php
+function ik() {
+    if(isset($_GET['isk'])) {
+        $isk = $_GET['isk'];
+    $pikkus = strlen($isk); 
     if ($pikkus == 11) {
-        if (intval($ik[0]) % 2 == 0) {
+        echo "Isikukood on õige pikkusega<br>";
+        if (intval($isk[0]) % 2 == 0) {
             $vastus =  "Naine";
         } else {
              $vastus =  "Mees";
         }
     } else {
-        $vastus =  "Vale pikkusega";
+        $vastus =  "IK Vale pikkusega";
     }
-    return $vastus;
+$sugunumber = intval($isk[0]);
+$aasta = substr($isk, 1, 2);
+$kuu = substr($isk, 3, 2);
+$paev = substr($isk, 5, 2);
+
+if ($sugunumber == 1 || $sugunumber == 2) {
+    $aasta = "18" . $aasta;
+} elseif ($sugunumber == 3 || $sugunumber == 4) {
+    $aasta = "19" . $aasta;
+} elseif ($sugunumber == 5 || $sugunumber == 6) {
+    $aasta = "20" . $aasta;
+} else {
+    $vastus = "Viga isikukoodis";
 }
-echo ik("50804064215");
-echo "<br>";
 
+echo "Sünniaeg on: $paev.$kuu.$aasta<br>";
+echo $vastus . "<br>";
+}
+}
+ik();  
+?>
+<form method="#">
+    <input type="number" name="isk" maxlength="11"><br>
+    <input type="submit" value="Leia sünniaeg">
+</form>
 
+<?php
 function headMotted(){
     $alused = array("Jüri", "Mari", "Uku");
     $oeldised = array("armastab", "viskab", "peeretab");
     $sihitised = array("mind", "sind", "meid");
 
-    echo array_rand($alused)." ".$oeldised[array_rand($oeldised)]." ".$sihitised[array_rand($sihitised)];
+    echo $alused[array_rand($alused)]." ".$oeldised[array_rand($oeldised)]." ".$sihitised[array_rand($sihitised)];
 }
+echo "<br>";
 headMotted();
-headMotted();
-headMotted();
-headMotted();
-headMotted();
+
+echo "<br>";
+
+
+
 
 ?>
 </body>
