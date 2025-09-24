@@ -27,7 +27,7 @@ if (!empty($_POST['tollid'])) {
 <?php endif; ?>
 
 
-<h2>Redel su sitt on vedel
+<h2>Redel
 
 </h2>
 <?php
@@ -114,4 +114,5 @@ foreach ($jooksjad as $nimi => $aeg) {
 ?>
 <h1>Tärnid</h1>
 </body>
+
 </html>
