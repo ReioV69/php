@@ -21,7 +21,7 @@ function addDots($word) {
 
 
 function replaceProfanity($message) {
-    $profanities = ['noob', 'idiot', 'stupid', 'vittu', 'perse', 'jobi'];
+    $profanities = ['noob', 'idiot', 'stupid'];
     return preg_replace('/\b(' . implode('|', $profanities) . ')\b/i', '***', $message);
 }
 
@@ -66,4 +66,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 </body>
+
 </html>
