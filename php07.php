@@ -6,83 +6,66 @@
     <title>Harjutus 12</title>
 </head>
 <body>
-    <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $startTime = $_POST['start_time'];
-    $endTime = $_POST['end_time'];
-
-
-    if (empty($startTime) || empty($endTime) || strlen($startTime) < 5 || strlen($endTime) < 5) {
-        echo "Palun sisestage kehtivad ajad (hh:mm)!";
-    } else {
-
-        list($startHours, $startMinutes) = explode(':', $startTime);
-        list($endHours, $endMinutes) = explode(':', $endTime);
-
-
-        $startTotalMinutes = $startHours * 60 + $startMinutes;
-        $endTotalMinutes = $endHours * 60 + $endMinutes;
-
-
-        $durationMinutes = $endTotalMinutes - $startTotalMinutes;
-
-
-        if ($durationMinutes < 0) {
-            $durationMinutes += 24 * 60;
-        }
-
-        $durationHours = floor($durationMinutes / 60);
-        $remainingMinutes = $durationMinutes % 60;
-
-        echo "Sõiduaeg: " . $durationHours . " tundi ja " . $remainingMinutes . " minutit.";
-    }
-}
-?>
-
-<form method="post">
-    Alustamise aeg (hh:mm): <input type="text" name="start_time" required><br>
-    Lõppaja aeg (hh:mm): <input type="text" name="end_time" required><br>
-    <input type="submit" value="Arvuta sõiduaeg">
+  <h1>Harjutus 12</h1>
+<form action="" method="get">
+    Alustamise aeg: <input type="time" name="start" required><br>
+    Lõppaja aeg: <input type="time" name="finish" required><br>
+    <input type="submit" value="Leia aeg">
 </form>
+
 <?php
-function analyzeSalaries($filename) {
-    if (!file_exists($filename) || !is_readable($filename)) {
-        return "Faili ei leitud või see ei ole loetav.";
-    }
+if (isset($_GET["start"]) && isset($_GET["finish"])) {
+    $start = strtotime($_GET["start"]);
+    $finish = strtotime($_GET["finish"]);
 
-    $menSalaries = [];
-    $womenSalaries = [];
-    
-    if (($handle = fopen($filename, 'r')) !== false) {
-        // Loeme CSV faili ridade kaupa
-        while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-            $name = $data[0];
-            $gender = $data[1];
-            $salary = (float)$data[2];
-
-            if ($gender === 'male') {
-                $menSalaries[] = $salary;
-            } elseif ($gender === 'female') {
-                $womenSalaries[] = $salary;
-            }
-        }
-        fclose($handle);
+    if ($start !== false && $finish !== false) {
+        $diff = abs($start - $finish);
+        $hours = intdiv($diff, 3600);
+        $minutes = intdiv(($diff % 3600), 60);
+        echo "Sõiduaeg: " . sprintf("%02d:%02d", $hours, $minutes);
+    } else {
+        echo "Aja sisestamisel tekkis viga.";
     }
 }
-    // Keskmiste ja kõrgeimate palkade arvutamine
-    $menAverage = !empty($menSalaries) ? array_sum($menSalaries) / count($menSalaries) : 0;
-    $womenAverage = !empty($womenSalaries) ? array_sum($womenSalaries) / count($womenSalaries) : 0;
-    $highestMenSalary = !empty($menSalaries) ? max($menSalaries) : 0;
-    $highestWomenSalary = !empty($womenSalaries) ? max($womenSalaries) : 0;
-
-    echo "Meeste keskmine palk: " . number_format($menAverage, 2) . "<br>";
-    echo "Naiste keskmine palk: " . number_format($womenAverage, 2) . "<br>";
-    echo "Kõrgeim meeste palk: " . number_format($highestMenSalary, 2) . "<br>";
-    echo "Kõrgeim naiste palk: " . number_format($highestWomenSalary, 2) . "<br>";
-
-    // Diskrimineerimise kontroll
-    if ($menAverage > $womenAverage) {
-    }
 ?>
-</body>
-</html>
+
+<br>
+
+<?php
+$allikas = 'tootajad.csv';
+$mpalk = 0; 
+$npalk = 0;
+$mkokku = 0; 
+$nkokku = 0;
+
+if (($fail = fopen($allikas, 'r')) !== false) {
+    while (($rida = fgetcsv($fail, 1000, ";")) !== false) {
+        if (count($rida) < 3) ;
+        if ($rida[1] == "m") {
+            $mkokku++;
+            $mpalk += (float)$rida[2];
+        } else {
+            $nkokku++;
+            $npalk += (float)$rida[2];
+        }
+    }
+    fclose($fail);
+
+    if ($mkokku > 0 && $nkokku > 0) {
+        $avg_m = $mpalk / $mkokku;
+        $avg_n = $npalk / $nkokku;
+
+        if ($avg_m > $avg_n) {
+            echo "Naisi ahistatakse";
+        } elseif ($avg_m < $avg_n) {
+            echo "Mehi ahistatakse";
+        } else {
+            echo "Ahistamine on mõlemal sama.";
+        }
+    } else {
+        echo "Andmeid ei leitud.";
+    }
+} else {
+    echo "Ei leia faili!";
+}
+?>
