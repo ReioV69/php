@@ -15,18 +15,18 @@ function formatName($name) {
 }
 
 
-function addDots($word) {
+function lisap($word) {
     return implode('.', str_split(strtoupper($word)));
 }
 
 
-function replaceProfanity($message) {
-    $profanities = ['noob', 'idiot', 'stupid'];
-    return preg_replace('/\b(' . implode('|', $profanities) . ')\b/i', '***', $message);
+function muudaroppus($message) {
+    $roppused = ['noob', 'idiot', 'stupid', 'vittu', 'perse', 'jobi'];
+    return preg_replace('/\b(' . implode('|', $roppused) . ')\b/i', '***', $message);
 }
 
 
-function generateEmail($firstName, $lastName) {
+function teegmail($firstName, $lastName) {
     $firstName = str_replace(['ä', 'ö', 'ü', 'õ'], ['a', 'o', 'y', 'o'], strtolower($firstName));
     $lastName = str_replace(['ä', 'ö', 'ü', 'õ'], ['a', 'o', 'y', 'o'], strtolower($lastName));
     return $firstName . '.' . $lastName . '@hkhk.edu.ee';
@@ -40,19 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastName = $_POST['last_name'];
 
 
-    $formattedName = formatName($name);
-    echo "Tere, " . $formattedName . "!<br>";
+    $vormintatud = formatName($name);
+    echo "Tere, " . $vormintatud . "!<br>";
 
 
-    $dottedWord = addDots($message);
-    echo "Tükeldatud sõna: " . $dottedWord . "<br>";
+    $tükeltatud = lisap($message);
+    echo "Tükeldatud sõna: " . $tükeltatud . "<br>";
 
     
-    $cleanMessage = replaceProfanity($message);
-    echo "Sõnum: " . $cleanMessage . "<br>";
+    $puhaskiri = muudaroppus($message);
+    echo "Sõnum: " . $puhaskiri . "<br>";
 
 
-    $email = generateEmail($firstName, $lastName);
+    $email = teegmail($firstName, $lastName);
     echo "E-post: " . $email . "<br>";
 }
 ?>
@@ -66,5 +66,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 </body>
-
 </html>
