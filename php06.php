@@ -21,7 +21,7 @@ function lisap($word) {
 
 
 function muudaroppus($message) {
-    $roppused = ['noob', 'idiot', 'stupid', 'vittu', 'perse', 'jobi'];
+    $roppused = ['noob', 'idiot', 'stupid'];
     return preg_replace('/\b(' . implode('|', $roppused) . ')\b/i', '***', $message);
 }
 
@@ -33,12 +33,11 @@ function teegmail($firstName, $lastName) {
 }
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $message = $_POST['message'];
-    $firstName = $_POST['first_name'];
-    $lastName = $_POST['last_name'];
-
+if (isset($_GET["name"])) {
+    $name = $_GET["name"];
+    $message = $_GET['message'];
+    $firstName = $_GET['first_name'];
+    $lastName = $_GET['last_name'];
 
     $vormintatud = formatName($name);
     echo "Tere, " . $vormintatud . "!<br>";

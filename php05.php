@@ -15,29 +15,39 @@ $date = new DateTime('2023-03-20 17:31');
 
 echo "Kuupäev ja kellaaeg: " . $date->format('d.m.Y H:i') . "<br>";
 
-$birthDate = new DateTime('2008-04-06');
-$age = $date->diff($birthDate)->y;
-echo "Kasutaja vanus: " . $age . " aastat<br>";
+$synnikuupaev = new DateTime('2008-05-01');
+$tana = new DateTime();   //https://www.designcise.com/web/tutorial/how-to-calculate-age-from-birthdate-in-php
+$diff = $tana->diff($synnikuupaev);
+$vanus = (int) $diff->format('%y');
+
+ $today = new \DateTime('today');
+        $lastDayOfYear = new \DateTime(date('Y-12-31'));
+        $daysLeft = (int) $lastDayOfYear->format('z') - (int) $today->format('z');
+        $isLeapYear = (bool) $today->format('L');
+
+        echo "<br>";
+//https://www.strangebuzz.com/en/snippets/calculating-the-number-of-days-until-the-end-of-the-year-with-php EI OLE AI SEE ON INTERNETIST LEITUD PHP CODE!!!!!
+        echo "There are $daysLeft day(s) until the end of year!";
+        echo "<br>";
 
 
-$schoolYearEnd = new DateTime('2023-06-30'); 
-$daysUntilEnd = $date->diff($schoolYearEnd)->days;
-echo "Kooliaasta lõpuni on jäänud: " . $daysUntilEnd . " päeva!<br>";
-
-
+echo "$vanus.Aastat vana" ;
+echo "<br>";
+?>
+<?php
 $month = (int)$date->format('m');
 if ($month >= 3 && $month <= 5) {
     $season = "kevad";
-    $image = "pildid/kevad.jpg"; // Pilt kevade kohta
+    $image = "pildid/kevad.jpg";
 } elseif ($month >= 6 && $month <= 8) {
     $season = "suvi";
-    $image = "pildid/suvi.jpg"; // Pilt suve kohta
+    $image = "pildid/suvi.jpg";
 } elseif ($month >= 9 && $month <= 11) {
     $season = "sügis";
-    $image = "pildid/sügis.jpg"; // Pilt sügise kohta
+    $image = "pildid/sügis.jpg";
 } else {
     $season = "talv";
-    $image = "pildid/talv.jpg"; // Pilt talve kohta
+    $image = "pildid/talv.jpg"; 
 }
 
 echo "Aastaeg: " . $season . "<br>";

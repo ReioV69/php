@@ -7,18 +7,24 @@
 </head>
 <body>
 <?php    
-// Katalooge ja faile kuvamine
+// kataloogi ja kuvamine
 $kataloog = 'pildid';
 $asukoht = opendir($kataloog);
 
-while ($rida = readdir($asukoht)) {
-    if ($rida != '.' && $rida != '..' && (strpos($rida, '.jpg') !== false || strpos($rida, '.jpeg') !== false)) {
-        echo '<a href="'.$kataloog.'/'.$rida.'" target="_blank">'.$rida.'</a><br>';
-    }
-}
-closedir($asukoht);
 
-// Failide üleslaadimise vorm
+if ($asukoht) {
+    while (($rida = readdir($asukoht)) !== false) {
+        if ($rida != '.' && $rida != '..') {
+            $imageFileType = strtolower(pathinfo($rida, PATHINFO_EXTENSION));
+            if ($imageFileType == "jpg" || $imageFileType == "jpeg") { //https://www.w3schools.com/php/php_file_upload.asp
+             echo $kataloog. "/" . $rida . "<br>";
+            }
+        }
+    }
+    closedir($asukoht);
+} else {
+    echo "Error: Could not open the directory.";
+}
 ?>
 <form action="" method="post" enctype="multipart/form-data">
     <input type="file" name="minu_fail"><br>
@@ -26,13 +32,15 @@ closedir($asukoht);
 </form>
 
 <?php
-// Faili üleslaadimise töötlemine
+// faili üleslaadimise töötlemine
 if (!empty($_FILES['minu_fail']['name'])) {
-    $faili_nimi = $_FILES['minu_fail']['name'];
+    $faili_nimi = $_FILES['minu_fail']['name'];  //https://gist.github.com/taterbase/2688850
     $ajutine_fail = $_FILES['minu_fail']['tmp_name'];
-    $faili_tyyp = $_FILES['minu_fail']['type'];
-
-    // Kontrollime, kas fail on JPG või JPEG
+    $faili_tyyp = $_FILES['minu_fail']['tmp_name'];
+    $faili_tyyp = strtolower(pathinfo($faili_nimi, PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($rida, PATHINFO_EXTENSION));
+    
+    // kontrollime, kas fail on JPG või JPEG
     if ($faili_tyyp == 'image/jpeg' || $faili_tyyp == 'image/jpg') {
         $kataloog = 'pildid';
         if (move_uploaded_file($ajutine_fail, $kataloog.'/'.$faili_nimi)) {
