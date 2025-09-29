@@ -35,20 +35,7 @@ if (isset($sentimeetrid)) {
 
 
 
-$kokku = 100;
-$veerge = 10;
-$i = 0;
-?>
 
-<table>
-  <tr>
-<?php
-for ($n = 1; $n <= $kokku; $n++) {
-    echo '<td>*</td>';
-    $i++;
-    if ($i % $veerge == 0 && $n < $kokku) echo "</tr>\n<tr>\n";
-}
-?>
 
 <?php
 $nimed = ['Jüri','Mari','Kati','Mati','Juuli','Maali'];
@@ -68,7 +55,15 @@ foreach ($jooksjad as $nimi => $aeg) {
     if ($koht++ == 3) break;
 }
 ?>
-<h1>Tärnid</h1>
+<h2>Tärnid</h2>
+<?php
+    for($i=1;  $i <= 100; $i++) {
+    echo "*";
+    if ($i%10==0) {
+        echo "<br>";
+    }
+}
+?>
 </body>
 
 </html>
