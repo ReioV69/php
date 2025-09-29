@@ -11,78 +11,34 @@
 echo 'Juhan Liiv, "Ääremärkused"';
 ?>
 <h1>Harjutus: tollid → sentimeetrid</h1>
+
 <?php
-if (!empty($_POST['tollid'])) {
-    $tulemus = round((float)$_POST['tollid'] * 2.54, 2) . ' cm';
+if ($_POST) {
+    $tollid = $_POST['tollid'];
+    $sentimeetrid = round($tollid * 2.54, 2);
 }
+
+
+
 ?>
-<form method="post">
-  <label>Tollid</label><br>
-  <input type="number" name="tollid" step="0.01" min="0" value="<?php echo htmlspecialchars($_POST['tollid'] ?? ''); ?>" required>
-  <button type="submit">Teisenda</button>
+<form action="#" method="post">
+  <label>Sisesta tollid</label>
+    Tollid: <input type="number" name="tollid" step="0.01" min="0">
+    <button type="submit">teisenda</button>
 </form>
 
-<?php if (!empty($tulemus)): ?>
-  <p>Tulemus: <strong><?php echo $tulemus; ?></strong></p>
-<?php endif; ?>
-
-
-<h2>Redel
-
-</h2>
 <?php
-
-function redeli_pikkus($soovitud_korgus_cm) {
-    $sisemine = 15;
-    $vahe = 25;
-
-    $h = floatval($soovitud_korgus_cm);
-    if ($h <= 0) return 0.00;
-
-    $kasutatav = $h - 2 * $sisemine;
-    if ($kasutatav <= 0) {
-        return round($h + 2 * $sisemine, 2);
-    }
-
-    $pulki = ceil($kasutatav / $vahe) + 1;
-    $kattev = ($pulki - 1) * $vahe + 2 * $sisemine;
-    return round($kattev, 2);
-}
-
-$tulemus = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $korgus = $_POST['korgus'] ?? '';
-    if ($korgus !== '') {
-        $tulemus = redeli_pikkus($korgus) . ' cm';
-    } else {
-        $tulemus = 'Sisesta kõrgus.';
-    }
+if (isset($sentimeetrid)) {
+    echo "<p>$tollid tolli on $sentimeetrid sentimeetrit</p>";
 }
 ?>
 
 
-<div class="box">
-  <form method="post" action="">
-    <label>Soovitud kõrgus (cm)</label>
-    <input type="number" name="korgus" step="0.1" min="0" value="<?php echo isset($_POST['korgus']) ; ?>" required>
-    <button type="submit">Arvuta</button>
-  </form>
-</div>
 
-<?php if ($tulemus !== ''): ?>
-  <div class="results">Vajalik redeli pikkus: <strong><?php echo $tulemus; ?></strong></div>
-<?php endif; ?>
-<h1>Tärnid</h1>
-<?php
 $kokku = 100;
 $veerge = 10;
 $i = 0;
 ?>
-<head>
-<meta charset="utf-8">
-
-</head>
-
 
 <table>
   <tr>
