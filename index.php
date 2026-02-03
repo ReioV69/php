@@ -202,7 +202,7 @@
                         <div class="navbar-nav ms-auto py-0">
                             <a href="index.php" class="nav-item nav-link active">Avaleht</a>
                             <a href="shop.php" class="nav-item nav-link">Tooted</a>
-                            <a href="single.html" class="nav-item nav-link">Kalkulaator</a>
+                            <a href="single.php" class="nav-item nav-link">Kalkulaator</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lehed</a>
                                 <div class="dropdown-menu m-0">

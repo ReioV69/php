@@ -22,6 +22,7 @@
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -46,7 +47,7 @@
     <!-- Topbar Start -->
     <div class="container-fluid px-5 d-none border-bottom d-lg-block">
         <div class="row gx-0 align-items-center">
-            <div class="col-lg-4 text-center text-lg-start mb-lg-0">
+            <div class="col-12 text-center text-lg-start mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <a href="#" class="text-muted me-2"> Help</a><small> / </small>
                     <a href="#" class="text-muted mx-2"> Support</a><small> / </small>
@@ -138,55 +139,9 @@
     </div>
     <!-- Topbar End -->
 
-    <!-- Navbar & Hero Start -->
-    <div class="container-fluid nav-bar p-0">
-        <div class="row gx-0 bg-primary px-5 align-items-center">
-            <div class="col-lg-3 d-none d-lg-block">
-                <nav class="navbar navbar-light position-relative" style="width: 250px;">
-                    <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#allCat">
-                        <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
-                    </button>
-                    <div class="collapse navbar-collapse rounded-bottom" id="allCat">
-                        <div class="navbar-nav ms-auto py-0">
-                            <ul class="list-unstyled categories-bars">
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Accessories</a>
-                                        <span>(3)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Electronics & Computer</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Laptops & Desktops</a>
-                                        <span>(2)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Mobiles & Tablets</a>
-                                        <span>(8)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">SmartPhone & Smart TV</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+    
             <div class="col-12 col-lg-9">
-                <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
                     <a href="" class="navbar-brand d-block d-lg-none">
                         <h1 class="display-5 text-secondary m-0"><i
                                 class="fas fa-shopping-bag text-white me-2"></i>Electro</h1>
@@ -202,13 +157,13 @@
                             <a href="shop.php" class="nav-item nav-link">Shop</a>
                             <a href="single.php" class="nav-item nav-link">Kalkulaator</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link active" data-bs-toggle="dropdown"><span
+                                <a href="#" class="nav-link" data-bs-toggle="dropdown"><span
                                         class="dropdown-toggle">Pages</span></a>
                                 <div class="dropdown-menu m-0">
                                     <a href="bestseller.html" class="dropdown-item">Bestseller</a>
                                     <a href="cart.html" class="dropdown-item">Cart Page</a>
                                     <a href="cheackout.html" class="dropdown-item">Cheackout</a>
-                                    <a href="404.html" class="dropdown-item active">404 Page</a>
+                                    <a href="404.html" class="dropdown-item">404 Page</a>
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link me-2">Contact</a>
@@ -262,31 +217,74 @@
 
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">404 Page</h1>
+        <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Kalkulaator</h1>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-white">404</li>
+            <li class="breadcrumb-item active text-white">Kalkulaator</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
 
-    <!-- 404 Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5 text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <i class="bi bi-exclamation-triangle display-1 text-secondary"></i>
-                    <h1 class="display-1">404</h1>
-                    <h1 class="mb-4">Page Not Found</h1>
-                    <p class="mb-4">We’re sorry, the page you have looked for does not exist in our website! Maybe go to
-                        our home page or try to use a search?</p>
-                    <a class="btn btn-primary rounded-pill py-3 px-5" href="index.php">Go Back To Home</a>
-                </div>
+        <div class="col-12">
+
+            <div class="bg-light p-4">
+
+                <h3>Elektrikulu kalkulaator</h3>
+
+                <form method="post">
+
+                    <div class="mb-3">
+                        <label>Seadme hind (€)</label>
+                        <input type="number" step="0.01" name="price" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Elektri hind (€/kWh)</label>
+                        <input type="number" step="0.01" name="kwh_price" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Tarbimine (kWh tunnis)</label>
+                        <input type="number" step="0.01" name="kwh_usage" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Tunnid kuus</label>
+                        <input type="number" name="hours" class="form-control">
+                    </div>
+
+                    <button type="submit" name="calculate" class="btn btn-primary">
+                        Arvuta
+                    </button>
+
+                </form>
+
+                <?php
+                if (isset($_POST['calculate'])) {
+
+                    $price = $_POST['price'];
+                    $kwh_price = $_POST['kwh_price'];
+                    $kwh_usage = $_POST['kwh_usage'];
+                    $hours = $_POST['hours'];
+
+                    $electric = $kwh_price * $kwh_usage * $hours;
+                    $total = $price + $electric;
+
+                    echo "<p>Elektrikulu: " . number_format($electric, 2) . " €</p>";
+                    echo "<p>Kokku: " . number_format($total, 2) . " €</p>";
+
+                    $txt = date("Y-m-d") . " | " . $total . " €\n";
+                    file_put_contents("orders.txt", $txt, FILE_APPEND);
+                }
+                ?>
+
             </div>
+
         </div>
     </div>
-    <!-- 404 End -->
+</div>
+    <!-- Related Product End -->
 
     <!-- Footer Start -->
     <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
@@ -430,7 +428,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
 
 
     <!-- Template Javascript -->

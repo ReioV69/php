@@ -30,7 +30,20 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
+ <?php
 
+  $products = [];
+    $data = file("products.csv");
+  foreach ($data as $line){
+  $lineArray = explode(",", $line);
+  if (count($lineArray) >= 2 ) {
+  list($nimi, $hind,) = $lineArray;
+  $products[] = ['nimi' => $nimi, 'hind' => $hind];
+  }
+}
+#htmlspecialchars
+foreach ($products as $product) {}
+?>
 <body>
 
     <!-- Spinner Start -->
@@ -200,7 +213,7 @@
                         <div class="navbar-nav ms-auto py-0">
                             <a href="index.php" class="nav-item nav-link">Home</a>
                             <a href="shop.php" class="nav-item nav-link active">Shop</a>
-                            <a href="single.html" class="nav-item nav-link">Kalkulaator</a>
+                            <a href="single.php" class="nav-item nav-link">Kalkulaator</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link" data-bs-toggle="dropdown"><span
                                         class="dropdown-toggle">Pages</span></a>
@@ -375,19 +388,7 @@
     </div>
     <!-- Products Offer End -->
 
- <?php
-  $products = [];
-    $data = file("products.csv");
-  foreach ($data as $line){
-  $lineArray = explode(",", $line);
-  if (count($lineArray) >= 2 ) {
-  list($nimi, $hind,) = $lineArray;
-  $products[] = ['nimi' => $nimi, 'hind' => $hind];
-  }
-}
-#htmlspecialchars
-foreach ($products as $product) {}
-?>
+
     <!-- Shop Page Start -->
     <div class="container-fluid shop py-5">
         <div class="container py-5">
@@ -688,7 +689,7 @@ foreach ($products as $product) {}
                                             <div class="text-center rounded-bottom p-4">
                                                 <a href="#" class="d-block mb-2">Kodumasin</a>
                                                 <a href="#" class="d-block h4"><?=$nimi?></a>
-                                                <span class="text-primary fs-5"><?=$hind?></span>
+                                                <span class="text-primary fs-5"><p><?=$hind?></p></span>
                                             </div>
                                         </div>
                                         <div
